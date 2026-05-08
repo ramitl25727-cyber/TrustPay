@@ -105,7 +105,7 @@ export function ProfileScreen() {
         ].map(s => (
           <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 14, background: COLORS.card, borderRadius: 12, padding: "14px 16px", marginBottom: 8, border: `1px solid ${COLORS.border}`, cursor: "pointer" }}>
             <span style={{ fontSize: 20 }}>{s.icon}</span>
-            <div style={{ flex: 1 }}>
+            <div style={{flex: 1}}>
               <p style={{ color: COLORS.text, margin: 0, fontWeight: 600, fontSize: 14 }}>{s.label}</p>
               <p style={{ color: COLORS.textMuted, margin: 0, fontSize: 12 }}>{s.sub}</p>
             </div>
