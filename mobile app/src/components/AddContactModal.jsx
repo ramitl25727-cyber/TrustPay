@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { COLORS } from '../constants.js';
-
 export function AddContactModal({ isOpen, onClose, onSave }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-
   if (!isOpen) return null;
-
   return (
     <div style={{
       position: "absolute",
@@ -41,7 +38,6 @@ export function AddContactModal({ isOpen, onClose, onSave }) {
           value={phone} onChange={e => setPhone(e.target.value)}
           style={{ width: "100%", padding: "12px", marginBottom: 20, borderRadius: 8, border: `1px solid ${COLORS.border}`, background: COLORS.surface, color: COLORS.text, boxSizing: "border-box", fontSize: 14, outline: "none" }}
         />
-
         <div style={{ display: "flex", gap: 12 }}>
           <button 
             onClick={onClose}

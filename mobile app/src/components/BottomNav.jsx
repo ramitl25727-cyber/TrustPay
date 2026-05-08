@@ -1,6 +1,5 @@
 import React from 'react';
 import { COLORS } from '../constants.js';
-
 export function BottomNav({ active, onNav }) {
   const tabs = [
     { id: "home", label: "Home", icon: "⌂" },
