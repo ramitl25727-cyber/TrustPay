@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { COLORS } from "../constants.js";
 
-const PhoneLayout = () => {
+export const PhoneLayout = ({ children, bottomNav }) => {
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -27,19 +28,27 @@ const PhoneLayout = () => {
 
   return (
     <div style={styles.body}>
-      <div style={styles.phoneContainer}>
+      <div style={{ ...styles.phoneContainer, backgroundColor: COLORS.bg }}>
         {/* Notch */}
         <div style={styles.notch}></div>
 
         {/* Status Bar */}
         <div style={styles.statusBar}>
-          <span>{time}</span>
+          <span style={{ color: "#fff" }}>{time}</span>
 
           <div style={styles.icons}>
-            <span>🛜</span>
-            <span>🔋</span>
+            <span style={{ color: "#fff" }}>🛜</span>
+            <span style={{ color: "#fff" }}>🔋</span>
           </div>
         </div>
+
+        {/* Screen Content */}
+        <div className="hide-scroll" style={styles.screenContent}>
+          {children}
+        </div>
+
+        {/* Fixed Bottom Navigation */}
+        {bottomNav}
       </div>
     </div>
   );
@@ -59,7 +68,6 @@ const styles = {
   phoneContainer: {
     width: "375px",
     height: "812px",
-    backgroundColor: "#ffffff",
     borderRadius: "40px",
     border: "12px solid #333",
     position: "relative",
@@ -79,10 +87,14 @@ const styles = {
     backgroundColor: "#333",
     borderBottomLeftRadius: "20px",
     borderBottomRightRadius: "20px",
-    zIndex: 10,
+    zIndex: 30,
   },
 
   statusBar: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
     height: "44px",
     display: "flex",
     justifyContent: "space-between",
@@ -90,14 +102,22 @@ const styles = {
     padding: "0 20px",
     fontSize: "14px",
     fontWeight: "600",
-    color: "#000",
-    zIndex: 1,
+    color: "#fff",
+    zIndex: 20,
+    pointerEvents: "none",
   },
 
   icons: {
     display: "flex",
     gap: "5px",
   },
-};
 
-export default PhoneLayout;
+  screenContent: {
+    flex: 1,
+    overflowY: "auto",
+    overflowX: "hidden",
+    position: "relative",
+    scrollbarWidth: "none",
+    msOverflowStyle: "none",
+  }
+};
