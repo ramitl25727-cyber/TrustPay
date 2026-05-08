@@ -9,8 +9,7 @@ export function ProfileScreen() {
     { label: "Lending Activity", score: 14, max: 20, color: "#a855f7" },
     { label: "Account Age", score: 8, max: 15, color: COLORS.accent },
   ];
-  const circumference = 2 * Math.PI * 52;
-  const dashOffset = circumference * (1 - 0.82);
+  const trustScore = 40;
 
   return (
     <div style={{ paddingBottom: 80 }}>
@@ -28,16 +27,13 @@ export function ProfileScreen() {
         <div style={{ background: COLORS.card, borderRadius: 16, padding: 20, marginBottom: 16, border: `1px solid ${COLORS.border}` }}>
           <p style={{ color: COLORS.textMuted, fontSize: 11, letterSpacing: 1, fontWeight: 700, margin: "0 0 12px" }}>TRUST SCORE</p>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-            <div style={{ position: "relative", width: 90, height: 90 }}>
-              <svg width="90" height="90" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="52" fill="none" stroke={COLORS.border} strokeWidth="10" />
-                <circle cx="60" cy="60" r="52" fill="none" stroke={COLORS.blue} strokeWidth="10"
-                  strokeDasharray={circumference} strokeDashoffset={dashOffset}
-                  strokeLinecap="round" transform="rotate(-90 60 60)" />
-              </svg>
-              <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ color: COLORS.text, fontSize: 22, fontWeight: 800 }}>82</span>
-                <span style={{ color: COLORS.textMuted, fontSize: 10 }}>/ 100</span>
+            <div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
+                <span style={{ color: COLORS.text, fontSize: 36, fontWeight: 800 }}>{trustScore}</span>
+                <span style={{ color: COLORS.textMuted, fontSize: 14 }}>/ 100</span>
+              </div>
+              <div style={{ width: 100, height: 8, background: COLORS.border, borderRadius: 4, marginTop: 4 }}>
+                <div style={{ width: `${trustScore}%`, height: "100%", background: COLORS.blue, borderRadius: 4 }} />
               </div>
             </div>
             <div>
