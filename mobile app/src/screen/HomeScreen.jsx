@@ -9,10 +9,10 @@ export function HomeScreen({ onNav, appState }) {
 
   const lentLoans = activeLoans.filter(l => l.type === "lent");
   const borrowLoans = activeLoans.filter(l => l.type === "borrowed");
-  
-  const owedToMePeopleCount = new Set([
-    ...lentLoans.map(l => l.id)
-  ]).size;
+  const owedToMePeopleCount = lentLoans
+    .map(l => l.id)
+    .filter((id, index, array) => array.indexOf(id) === index)
+    .length;
 
   const owedSub = owed > 0 ? `${owedToMePeopleCount} people` : "No dues";
 
@@ -68,7 +68,6 @@ export function HomeScreen({ onNav, appState }) {
             </div>
           ))}
         </div>
-
         {/* Trust score */}
         <div style={{
           background: "rgba(255,255,255,0.1)", borderRadius: 12, padding: "10px 14px",
@@ -89,7 +88,6 @@ export function HomeScreen({ onNav, appState }) {
             <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 11 }}>Very Good</span>
           </div>
         </div>
-
         {/* Action buttons */}
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           {[
@@ -161,8 +159,6 @@ export function HomeScreen({ onNav, appState }) {
             )}
           </div>
         ))}
-
-
       </div>
     </div>
   );

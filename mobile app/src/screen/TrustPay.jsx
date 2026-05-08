@@ -3,7 +3,6 @@ import { COLORS, CONTACTS as initialContacts } from "../constants.js";
 import { BottomNav } from "../components/BottomNav.jsx";
 import { HomeScreen } from "./HomeScreen.jsx";
 import { LendScreen } from "./LendScreen.jsx";
-
 import { RequestScreen } from "./RequestScreen.jsx";
 import { ProfileScreen } from "./ProfileScreen.jsx";
 import { PhoneLayout } from "../components/Phonelayout.jsx";
@@ -30,15 +29,12 @@ export default function App() {
   };
   const [activeLoans, setActiveLoans] = useState([]);
 
-
-
   const onLend = (contact, amount, purpose, tenure = 7) => {
     setOwed(prev => prev + Number(amount));
     setActiveLoans(prev => [{
       id: contact.id, name: contact.name, sub: purpose || "Lent money", amount: `₹${amount}`, badge: "Just now", badgeColor: COLORS.blue, progress: 0, type: "lent", tenure
     }, ...prev]);
   };
-
   const onRequest = (contact, amount, purpose, tenure = 7) => {
     setOwe(prev => prev + Number(amount));
     setActiveLoans(prev => [{
@@ -52,7 +48,6 @@ export default function App() {
     <PhoneLayout bottomNav={<BottomNav active={activeTab} onNav={handleNav} />}>
       {screen === "home" && <HomeScreen onNav={handleNav} appState={appState} />}
       {screen === "lend" && <LendScreen onNav={handleNav} appState={appState} appActions={appActions} />}
-
       {screen === "request" && <RequestScreen onNav={handleNav} appState={appState} appActions={appActions} />}
       {screen === "profile" && <ProfileScreen />}
     </PhoneLayout>
