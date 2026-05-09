@@ -9,7 +9,7 @@ export function ProfileScreen() {
     { label: "Lending Activity", score: 14, max: 20, color: "#a855f7" },
     { label: "Account Age", score: 8, max: 15, color: COLORS.accent },
   ];
-  const trustScore = 40;
+  const trustScore = 82;
 
   return (
     <div style={{ paddingBottom: 80 }}>

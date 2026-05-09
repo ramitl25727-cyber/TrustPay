@@ -5,18 +5,19 @@ import { AddContactModal } from '../components/AddContactModal.jsx';
 
 export function LendScreen({ onNav, appState, appActions }) {
   const { contacts } = appState;
-  const [selected, setSelected] = useState("PS");
+  const [selected, setSelected] = useState("");
   const [amount, setAmount] = useState("");
   const [purpose, setPurpose] = useState("");
   const [tenure, setTenure] = useState(7);
   const [sent, setSent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const contact = contacts.find(c => c.id === selected) || contacts[0];
+  const contact = contacts.find(c => c.id === selected);
   const tenureDays = [1, 3, 5, 7, 14, 30];
   const repayDate = new Date();
   repayDate.setDate(repayDate.getDate() + tenure);
-  const dateStr = repayDate.toLocaleDateString("en-IN", { day: "numeric", month: "short" });
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const dateStr = repayDate.getDate() + " " + months[repayDate.getMonth()];
 
   if (sent) return (
     <div style={{ minHeight: "100vh", background: COLORS.bg, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
@@ -156,7 +157,7 @@ export function LendScreen({ onNav, appState, appActions }) {
             <span style={{ color: COLORS.textMuted, fontSize: 13 }}>Repayment tenure</span>
             <span style={{ color: COLORS.blue, fontWeight: 700, fontSize: 14 }}>{tenure} days</span>
           </div>
-          <input type="range" min={1} max={30} value={tenure} onChange={e => setTenure(+e.target.value)}
+          <input type="range" min={1} max={30} value={tenure} onChange={e => setTenure(Number(e.target.value))}
             style={{ width: "100%", accentColor: COLORS.blue, marginBottom: 12 }} />
           <div style={{ display: "flex", gap: 6 }}>
             {tenureDays.map(d => (
@@ -205,7 +206,7 @@ export function LendScreen({ onNav, appState, appActions }) {
             background: amount && selected ? COLORS.blue : COLORS.textDim,
             color: "#fff", fontSize: 16, fontWeight: 700, cursor: amount && selected ? "pointer" : "not-allowed",
           }}>
-          Send ₹{amount} to {contact?.full}
+          Send ₹{amount ? amount : 0} to {contact ? contact.full : ""}
         </button>
       </div>
     </div>
