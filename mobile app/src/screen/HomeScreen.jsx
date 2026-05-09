@@ -55,8 +55,8 @@ export function HomeScreen({ onNav, appState }) {
         {/* Balance row */}
         <div style={{ display: "flex", gap: 12, marginBottom: 16 }}>
           {[
-            { label: "YOU'RE OWED", amount: `₹${owed.toLocaleString()}`, sub: owedSub, color: COLORS.green },
-            { label: "YOU OWE", amount: `₹${owe.toLocaleString()}`, sub: dueSub, color: COLORS.accent },
+            { label: "YOU'RE OWED", amount: `₹${owed}`, sub: owedSub, color: COLORS.green },
+            { label: "YOU OWE", amount: `₹${owe}`, sub: dueSub, color: COLORS.accent },
           ].map(b => (
             <div key={b.label} style={{
               flex: 1, background: "rgba(255,255,255,0.1)", borderRadius: 12,
